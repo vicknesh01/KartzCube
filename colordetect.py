@@ -1,13 +1,45 @@
 # This module is used to detect the color and save the values
 # Created by Vickneshwaran Elangkeeran
 
+
+
+from picamera2 import Picamera2
 import cv2
 import imutils
+import numpy as np
 
 print("KartzCube Color Detector. Powered by OpenCV " + cv2.__version__)
 
-import cv2
-import numpy as np
+
+
+
+
+
+
+# Initialize the camera
+picam2 = Picamera2()
+
+# Configure the camera
+camera_config = picam2.create_still_configuration()
+picam2.configure(camera_config)
+
+try:
+    # Start the camera
+    picam2.start()
+
+    # Capture the picture
+    picam2.capture_file('test4.jpg')
+
+    print("Image taken using Camera")
+
+finally:
+    # Stop the camera
+    picam2.stop()
+
+
+
+
+
 
 def is_approx_3x3_layout(squares, tolerance=50):
     """
@@ -194,4 +226,4 @@ def detect_and_validate_partial_grid(image_path):
     cv2.destroyAllWindows()
 
 # Replace 'image.png' with the path to your uploaded image
-detect_and_validate_partial_grid("test.jpg")
+detect_and_validate_partial_grid("test4.jpg")
